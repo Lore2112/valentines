@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be my valentine?</title>
     <style>
         body {
@@ -12,51 +13,57 @@
             align-items: center;
             justify-content: center;
             margin: 0;
+            padding: 16px;
+            overflow: hidden;
         }
 
         .card {
-            background: rgba(245, 245, 245, 0.85);
-            padding: 24px;
-            border-radius: 12px;
-            max-width: 420px;
+            background: rgba(245, 245, 245, 0.9);
+            padding: 28px;
+            border-radius: 14px;
             width: 100%;
+            max-width: 480px;
             text-align: center;
             box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 1.8rem;
         }
 
         h2 {
             margin-top: 0;
+            font-size: 1.2rem;
         }
 
         .buttons {
             display: flex;
             gap: 12px;
             justify-content: center;
-            margin-top: 15px;
+            margin-top: 18px;
+            flex-wrap: wrap;
         }
 
         button {
             border: none;
-            border-radius: 6px;
-            padding: 10px 16px;
+            border-radius: 8px;
+            padding: 12px 18px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
+            min-width: 160px;
         }
 
         .button_yes {
             background: linear-gradient(135deg, white, lightgreen);
-            color: black;
         }
 
         .button_ybr {
             background: linear-gradient(135deg, white, rgb(248, 44, 44));
-            color: black;
         }
 
         button:hover {
@@ -71,21 +78,47 @@
 
         .box {
             display: none;
-            margin-top: 20px;
-            padding: 16px;
-            border-radius: 8px;
+            margin-top: 22px;
+            padding: 18px;
+            border-radius: 10px;
             background: white;
-            animation: pop 0.3s ease;
+            animation: pop 0.25s ease;
         }
 
         @keyframes pop {
             from {
-                transform: scale(0.9);
+                transform: scale(0.95);
                 opacity: 0;
             }
             to {
                 transform: scale(1);
                 opacity: 1;
+            }
+        }
+
+        .heart {
+            position: fixed;
+            top: -20px;
+            font-size: 20px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
             }
         }
     </style>
@@ -96,8 +129,8 @@
         <h2>Do you wanna be my valentine? ❤️</h2>
 
         <div class="buttons">
-            <button class="button_yes" onclick="showBox()">Yes</button>
-            <button class="button_ybr" onclick="showBox()">Yes but in red</button>
+            <button class="button_yes" onclick="celebrate()">Yes</button>
+            <button class="button_ybr" onclick="celebrate()">Yes but in red</button>
         </div>
 
         <div id="box1" class="box">
@@ -107,8 +140,25 @@
     </div>
 
     <script>
-        function showBox() {
+        function celebrate() {
             document.getElementById("box1").style.display = "block";
+            launchHearts();
+        }
+
+        function launchHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerText = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (2 + Math.random() * 2) + "s";
+                heart.style.fontSize = (16 + Math.random() * 16) + "px";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
         }
     </script>
 </body>
