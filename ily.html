@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Be my valentine?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: pink;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .card {
+            background: rgba(245, 245, 245, 0.85);
+            padding: 24px;
+            border-radius: 12px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        .button_yes {
+            background: linear-gradient(135deg, white, lightgreen);
+            color: black;
+        }
+
+        .button_ybr {
+            background: linear-gradient(135deg, white, rgb(248, 44, 44));
+            color: black;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .box {
+            display: none;
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            background: white;
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Hi Emy :DD</h1>
+        <h2>Do you wanna be my valentine? ❤️</h2>
+
+        <div class="buttons">
+            <button class="button_yes" onclick="showBox()">Yes</button>
+            <button class="button_ybr" onclick="showBox()">Yes but in red</button>
+        </div>
+
+        <div id="box1" class="box">
+            <strong>❤️❤️❤️ YAAAAAAAYYY ❤️❤️❤️</strong>
+            <p>I love u so much, thanks for choosing! :DD</p>
+        </div>
+    </div>
+
+    <script>
+        function showBox() {
+            document.getElementById("box1").style.display = "block";
+        }
+    </script>
+</body>
+</html>
